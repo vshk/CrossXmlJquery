@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title>Cross XML Sample</title> 
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
+		<script src="xml2json.js"></script>
+		<script src="jquery.xdomainajax.js"></script>
+		<script>
+		    <!-- Made By Vipin Tanna -->
+			// For This example, im going to use sample xml from o'reily for practice
+			// located at url http://examples.com/9780596002527/examples/first.xml
+			// We are going to extract character name nodes for this sample
+			$(function() {
+				$.ajax({
+					url: 'http://feeds.feedburner.com/TechCrunch/',
+					dataType: "xml",
+					type: 'GET',
+					success: function(res) {
+						var myXML = res.responseText;
+						
+						try {
+							var xmlDoc = null;
+							
+							if ( window.DOMParser ) {
+								
+								var parser = new DOMParser();
+								xmlDoc = parser.parseFromString( myXML, "text/xml" );
+								
+								
+								} else {
+								
+								xmlDoc = new ActiveXObject( "Microsoft.XMLDOM" );
+								
+								xmlDoc.async = false;
+								xmlDoc.loadXML( myXML ); 
+							}
+							} catch ( e ) {
+							// suppress
+							alert(e);
+						}
+					 
+					// This is the part xml2Json comes in.
+					//var JSONConvertedXML = $.xml2json(myXML); 
+					
+					document.write("<table border='1'>");
+					
+					document.write("<table border='1'>");
+					var x = xmlDoc.getElementsByTagName("item");
+					
+					for (i=0;i<x.length;i++)
+					{
+						document.write("<tr><td>");
+						document.write(x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue);
+						document.write("</td><td>");
+					}
+					document.write("</table>"); 
+				}
+			});
+		});
+	</script>
+</head> 
+
+<body> 
+	
+</body>
+</html>
