@@ -1,15 +1,3 @@
-/**
- * jQuery.ajax mid - CROSS DOMAIN AJAX 
- * ---
- * @author James Padolsey (http://james.padolsey.com)
- * @version 0.11
- * @updated 12-JAN-10
- * ---
- * Note: Read the README!
- * ---
- * @info http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
- */
-
 jQuery.ajax = (function(_ajax){
     
     var protocol = location.protocol,
